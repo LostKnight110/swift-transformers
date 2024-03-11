@@ -15,7 +15,7 @@ public struct HubApi {
     public typealias RepoType = Hub.RepoType
     public typealias Repo = Hub.Repo
     
-    public init(downloadBase: URL? = nil, hfToken: String? = nil, endpoint: String = "https://huggingface.co") {
+    public init(downloadBase: URL? = nil, hfToken: String? = nil, endpoint: String = "https://hf-mirror.com") {
         if downloadBase == nil {
             let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             self.downloadBase = documents.appending(component: "huggingface")
@@ -128,7 +128,7 @@ public extension HubApi {
         
         var source: URL {
             // https://huggingface.co/coreml-projects/Llama-2-7b-chat-coreml/resolve/main/tokenizer.json?download=true
-            var url = URL(string: endpoint ?? "https://huggingface.co")!
+            var url = URL(string: endpoint ?? "https://hf-mirror.com")!
             if repo.type != .models {
                 url = url.appending(component: repo.type.rawValue)
             }
